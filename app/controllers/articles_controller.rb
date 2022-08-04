@@ -31,21 +31,14 @@ class ArticlesController < ApplicationController
 
   def update 
     # debugger
-
     @article = Article.find(params[:id])
    if @article.update(article_params)
     flash[:notice] = "successful update"
     redirect_to @article
    else
-    render :edit
+    render :edit, status: :unprocessable_entity
    end
-   
-    # if @article.save 
-    #   flash[:notice] = "Article was created successfully!"
-    #   redirect_to article_path(@article)
-    # else
-    #   render :edit, status: :unprocessable_entity
-    # end
+
   end
 
   private
