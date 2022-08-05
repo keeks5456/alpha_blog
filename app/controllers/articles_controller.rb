@@ -5,7 +5,8 @@ class ArticlesController < ApplicationController
   end
   
   def show 
-    @article = Article.find(params[:id])
+    params_id
+    # @article = Article.find(params[:id])
   end
 
   def new
@@ -13,7 +14,8 @@ class ArticlesController < ApplicationController
   end
 
   def edit 
-    @article = Article.find(params[:id])
+    params_id
+    # @article = Article.find(params[:id])
   end
 
   def create
@@ -31,20 +33,32 @@ class ArticlesController < ApplicationController
 
   def update 
     # debugger
-    @article = Article.find(params[:id])
+    params_id
+    # @article = Article.find(params[:id])
    if @article.update(article_params)
     flash[:notice] = "successful update"
-    redirect_to @article
+    redirect_to article_path(@article)
    else
     render :edit, status: :unprocessable_entity
    end
-
   end
+
+
+def destroy
+  params_id
+  # @article = Article.find(params[:id])
+  @article.destroy
+
+  redirect_to article_path(@article)
+end
 
   private
   def article_params
     params.require(:article).permit(:title, :description)
   end
 
+  def params_id
+    @article = Article.find(params[:id])
+  end
 
 end

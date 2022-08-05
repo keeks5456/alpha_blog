@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   root "articles#index"
   get "/articles/:id/edit" => "articles#edit"
-  resources :articles, only: [ :index, :show, :new, :create, :update] #edit
+  delete "/articles/:id" => "articles#destroy"
+  # resources :articles, only: [ :index, :show, :new, :create, :update] #edit
+  resources :articles #this exposes restful routes for articles resource
 end
