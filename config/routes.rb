@@ -3,8 +3,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
 
-  root "articles#show"
-  get 'about', to: 'pages#about'
-  # get 'show', to: 'articles#show'
-  resources :articles, only: [:show]
+  root "articles#index"
+  get "/articles/:id/edit" => "articles#edit"
+  delete "/articles/:id" => "articles#destroy"
+  # resources :articles, only: [ :index, :show, :new, :create, :update] #edit
+  resources :articles #this exposes restful routes for articles resource
 end
