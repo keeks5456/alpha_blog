@@ -11,9 +11,7 @@
   </head>
 
   <body>
-  <% flash.each do |name, message| %>
-    <%= message %>
-  <% end%>
+  <%= render 'articles/particles_folder/messages'%>
     <%= yield %>
   </body>
 </html>

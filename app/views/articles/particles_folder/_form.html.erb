@@ -1,0 +1,19 @@
+<%= render 'articles/particles_folder/error_messages'%>
+
+<%= form_with(model: @article, local: true ) do |form| %>
+  <p>
+    <%= form.label :title%><br />
+    <%= form.text_field :title%>
+  </p>
+
+  <p>
+    <%= form.label :description%><br />
+    <%= form.text_area :description%>
+  </p>
+
+  <p>
+    <%= form.submit :submit%>
+  </p>
+
+<% end %>
+<td><%= link_to "List All Articles", @article %></td>
