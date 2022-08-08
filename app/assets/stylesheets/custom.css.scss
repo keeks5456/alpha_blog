@@ -1,8 +1,15 @@
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Hurricane&display=swap');
 
+:root {
+  --dark-blue: #002642;
+  --burgandy: #840032;
+  --gold-yellow: #E59500;
+  --white-smoke:#E5DADA;
+  --black:#02040F;
+}
 body{
-  background-color: darkgray;
+  background-color: var(--burgandy);
 }
 
 .navbar{
