@@ -1,0 +1,68 @@
+@import "bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Hurricane&display=swap');
+
+:root {
+  --dark-blue: #002642;
+  --burgandy: #840032;
+  --gold-yellow: #E59500;
+  --white-smoke:#E5DADA;
+  --black:#02040F;
+}
+body{
+  background-color: var(--burgandy);
+}
+
+.navbar{
+  background-color: var(--dark-blue) !important;
+}
+
+
+.nav-link{
+  color: black;
+  font-size: 20px;
+  color: var(--white-smoke);
+}
+
+#logo{
+  font-family: 'Hurricane', cursive; 
+  font-size: 30px;
+  color: var(--gold-yellow);
+}
+
+.jumbotron-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  margin-top: 6em;
+}
+
+.btn-container{
+  display: flex;
+  justify-content: space-evenly;
+
+}
+
+.welcome-banner{
+  padding-bottom: 20px;
+  font-size: 6.5rem;
+  color: var(--white-smoke);
+}
+
+.slogan{
+  font-size: larger;
+  color: var(--white-smoke);
+}
+
+#footer{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width: 100%;
+  height: 5.7rem;
+  background-color: var(--dark-blue);
+  color: var(--white-smoke);
+
+}
