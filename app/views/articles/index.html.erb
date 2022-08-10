@@ -8,17 +8,22 @@
             <div class="card-header font-italic">
             By Thee Akiko G.
             </div>
-        <div class="card-body ">
-          <h5 class="card-title"><%= link_to article.title, article_path(article), class:"text-success" %></h5>
-          <p class="card-text"><%= truncate(article.description, length:50) %></p>
-          < class="btn btn-outline-dark ">View</a>
-          <button><%= link_to article.title, article_path(article), class:"btn btn-outline-dark" %></button>
-          <a href="/" class="btn btn-outline-danger">Delete<a>
-        </div>
-        <div class="card-footer text-muted">
-          <small>Created <%= time_ago_in_words(article.created_at)%> ago, edited at <%= time_ago_in_words(article.updated_at)%></small>
-        </div>
-      </div>
+            <div class="card-body ">
+              <h5 class="card-title"><%= link_to article.title, article_path(article), class:"text-success" %></h5>
+              <p class="card-text"><%= truncate(article.description, length:50) %></p>
+              <div class="container btn-container">
+                <%= button_to "View", article_path(article), class:"btn btn-outline-dark"%>
+                <%= button_to "Edit", edit_article_path(article.id), class:"btn btn-outline-dark", data: {  turbo_method: :edit,} %>
+                <%= button_to "Destroy", article_path(article.id), class:"btn btn-outline-dark", data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+              </div> #//button container
+            </div> #card body
+            <div class="card-footer text-muted">
+              <small>Created <%= time_ago_in_words(article.created_at)%> ago, edited at <%= time_ago_in_words(article.updated_at)%></small>
+            </div>
+          </div>
       </div>
     </div>
     <%end%>
