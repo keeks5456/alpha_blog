@@ -1,33 +1,31 @@
-<%= link_to 'Home page', root_path %>
-  <p><%= link_to "Create New Article", new_article_path(@articles) %></p>
-<table>
-  <thead>
-    <tr>
-      <th>All Articles</th>
-      <th>Description</th>
-      <th colspan="3">Actions</th>
-      
-    </tr>
-  </thead>
-
-  <tbody>
-  <% @articles.each do |article|%>
-    <tr>
-    <td><%= article.title %></td>
-    <td><%= article.description %></td>
-    <td><%= link_to "Show", article %></td>
-    <td><%= link_to "Edit", edit_article_path(article.id), data: {  turbo_method: :edit,} %></td>
-    <td><%= link_to "Destroy", article_path(article.id), data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you sure?"
-    } %></td>
-    </tr>
+<div id="page-content">
+  <div class="container">
+    <h1 class="text-center mt-4">All Articles</h1>
+    <% @articles.each do |article|%>
+      <div class="row justify-content-md-center">
+        <div class="col-8">
+          <div class="card text-center m-5 shadow-lg  mb-5 rounded">
+            <div class="card-header font-italic">
+            By Thee Akiko G.
+            </div>
+            <div class="card-body ">
+              <h5 class="card-title"><%= link_to article.title, article_path(article), class:"text-success" %></h5>
+              <p class="card-text"><%= truncate(article.description, length:50) %></p>
+              <div class="container btn-container">
+                <%= link_to "View", article_path(article), class:"btn btn-outline-dark"%>
+                <%= link_to "Edit", edit_article_path(article.id), class:"btn btn-outline-dark", data: {  turbo_method: :edit,} %>
+                <%= link_to "Destroy", article_path(article.id), class:"btn btn-outline-dark", data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+              </div> 
+            </div> 
+            <div class="card-footer text-muted">
+              <small>Created <%= time_ago_in_words(article.created_at)%> ago, edited at <%= time_ago_in_words(article.updated_at)%></small>
+            </div>
+          </div>
+      </div>
+    </div>
     <%end%>
-  </tbody>
-
-
-</table>
-
-
-
-
+  </div>
+</div>
