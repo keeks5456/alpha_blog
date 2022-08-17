@@ -1,12 +1,13 @@
 <div id="page-content">
   <div class="container">
     <h1 class="text-center mt-4">All Articles</h1>
+    <%= link_to "Create New Article", new_article_path%>
     <% @articles.each do |article|%>
       <div class="row justify-content-md-center">
         <div class="col-8">
           <div class="card text-center m-5 shadow-lg  mb-5 rounded">
             <div class="card-header font-italic">
-            <%= article.user.username%>
+            by <%= article.user.username%>
             </div>
             <div class="card-body ">
               <h5 class="card-title"><%= link_to article.title, article_path(article), class:"text-success" %></h5>
