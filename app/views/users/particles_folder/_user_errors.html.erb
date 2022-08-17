@@ -1,7 +1,6 @@
-
 <% if @user.errors.any? %>
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-  <h4 class="alert-heading"> the following errors prevented the from being saved </h4>
+  <h4 class="alert-heading"> the following errors prevented the user from being saved </h4>
   <ul>
     <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
