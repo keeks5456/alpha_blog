@@ -1,4 +1,7 @@
 <div id="page-content">
+  <div class="flickr_pagination">
+  <%= will_paginate @users, :container => false %>
+  </div>
   <div class="container">
     <h1 class="text-center mt-4">All Articles</h1>
     <% @users.each do |user|%>
@@ -23,6 +26,9 @@
       </div>
     </div>
     <%end%>
+  </div>
+  <div class="flickr_pagination">
+  <%= will_paginate @users, :container => false %>
   </div>
 </div>
 
