@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   delete "/articles/:id" => "articles#destroy"
   resources :articles, only: [ :index, :show, :new, :create, :edit, :update] #edit
   get 'signup', to: "users#new"
-  resources :users, except: [:new, :show]
+  get '/users/:id/edit', to: "users#edit"
+  resources :users, except: [:new, :show, :edit]
 end
