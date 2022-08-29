@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def show
+    find_user_id
+    @articles = @user.articles
+  end
 
   def new 
    @user = User.new
