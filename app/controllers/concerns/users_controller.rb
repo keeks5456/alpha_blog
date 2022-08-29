@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
-  
+
   def show
     find_user_id
     @articles = @user.articles
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def edit
     find_user_id
+    
   end
 
   def create 
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
     find_user_id
     if @user.update(user_params)
       flash[:notice] = "Account info updated"
-      redirect_to articles_path 
+      redirect_to @user 
     else
     end
   end
