@@ -1,10 +1,22 @@
-<h1>Title: <%= @article.title %></h1>
-<p>Description: <%= @article.description %></p>
-<%= link_to "Edit", edit_article_path(@article) %> |
-<%= link_to "Delete", article_path(@article.id), data: {
-  turbo_method: :delete,
-  turbo_confirm: "Are you sure?"
-  } %>
-  <%= link_to "All Articles", articles_url(@articles) %> |sition: sticky; either, which is liked fixed positioning inside of containers sort of.
-
-  # show user here when you come back to styles
+<h2 class="text-center mt-4"><%= @article.title %></h2>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+      <div class="card text-center shadow mb-5 bg-white rounded">
+        <div class="card-header font-italic">
+          by <%= @article.user.username if @article.user %>
+          <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
+        </div>
+        <div class="card-body">
+          <div class="card-text text-left"><%= simple_format(@article.description) %></div>
+          <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-dark" %>
+          <%= link_to "Delete", article_path(@article), class: "btn btn-outline-dark", method: :delete, data: {confirm: "Are you sure?"} %>
+        </div>
+        <div class="card-footer text-muted">
+          <small>Created <%= time_ago_in_words(@article.created_at) %> ago, 
+          edited <%= time_ago_in_words(@article.updated_at) %> ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
