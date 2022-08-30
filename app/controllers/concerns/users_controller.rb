@@ -17,7 +17,6 @@ class UsersController < ApplicationController
 
   def edit
     find_user_id
-    
   end
 
   def create 
