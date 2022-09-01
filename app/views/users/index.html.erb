@@ -3,7 +3,7 @@
   <%= will_paginate @users, :container => false %>
   </div>
   <div class="container">
-    <h1 class="text-center mt-4">All Articles</h1>
+    <h1 class="text-center mt-4">Bloggers</h1>
     <% @users.each do |user|%>
       <div class="row justify-content-md-center">
         <div class="col-8">
@@ -16,7 +16,9 @@
               <p class="card-text"><%= pluralize(user.articles.count, "article") %></p>
               <div class="container btn-container">
                 <%= link_to "View", user_path(user), class:"btn btn-outline-dark"%>
-                <%= link_to "Edit", edit_user_path(user.id), class:"btn btn-outline-dark", data: {  turbo_method: :edit,} %>
+                <% if logged_in? && user == current_user %>
+                  <%= link_to "Edit", edit_user_path(user.id), class:"btn btn-outline-dark", data: {  turbo_method: :edit,} %>
+                <% end %>
               </div> 
             </div> 
             <div class="card-footer text-muted">
