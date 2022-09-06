@@ -1,13 +1,16 @@
 class UsersController < ApplicationController
+
   before_action :find_user_id, only: [:show, :edit, :update]
-include SessionsHelper
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
+  
+  include SessionsHelper
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
 
   end
 
   def show
-    find_user_id
     @articles = @user.articles.paginate(page: params[:page], per_page: 5)
 
   end
@@ -17,7 +20,6 @@ include SessionsHelper
   end
 
   def edit
-    find_user_id
   end
 
   def create 
@@ -32,7 +34,6 @@ include SessionsHelper
   end
 
   def update 
-    find_user_id
     if @user.update(user_params)
       flash[:notice] = "Account info updated"
       redirect_to @user 
@@ -48,6 +49,13 @@ include SessionsHelper
 
   def find_user_id
     @user = User.find(params[:id])
+  end
+
+  def require_same_user
+    if current_user != @user
+      flash[:alert] = "You can only edit or delete your own profile"
+      redirect_to @user
+    end
   end
 
 end
