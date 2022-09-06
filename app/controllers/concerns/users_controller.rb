@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
 
   before_action :find_user_id, only: [:show, :edit, :update]
-  before_action :require_user, except: [:show, :index]
-  before_action :require_same_user, only: [:edit, :update, :destroy]
-  
+  before_action :require_user, only: [:edit, :update] # the user is only allowed to do these actions to their own profiles 
+  before_action :require_same_user, only: [:edit, :update, :destroy] # the same user thats logged in can do these actions to their own profiles
   include SessionsHelper
+
   def index
     @users = User.paginate(page: params[:page], per_page: 5)
 
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
   def require_same_user
     if current_user != @user
-      flash[:alert] = "You can only edit or delete your own profile"
+      flash[:alert] = "You can only edit or delete your own account"
       redirect_to @user
     end
   end
