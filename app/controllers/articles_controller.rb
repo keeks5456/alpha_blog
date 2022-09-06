@@ -1,12 +1,14 @@
 class ArticlesController < ApplicationController
+  # ***remember code executes top down so please do these before / after actions in order you need them in!
   before_action :find_params_id, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update, :destroy]
   
   def index
     @articles = Article.paginate(page: params[:page], per_page: 5)
   end
   
   def show 
-    find_params_id
   end
 
   def new
@@ -14,7 +16,7 @@ class ArticlesController < ApplicationController
   end
 
   def edit 
-    find_params_id
+    
   end
 
   def create
@@ -32,7 +34,6 @@ class ArticlesController < ApplicationController
 
 
   def update 
-    find_params_id
    if @article.update(article_params)
     flash[:notice] = "successful update"
     redirect_to article_path(@article)
@@ -43,7 +44,6 @@ class ArticlesController < ApplicationController
 
 
 def destroy
-  find_params_id
   @article.destroy
 
   redirect_to articles_path
@@ -56,6 +56,13 @@ end
 
   def find_params_id
     @article = Article.find(params[:id])
+  end
+
+  def require_same_user
+    if current_user != @article.user
+      flash[:alert] = "Ypu can only edit or delete your own article"
+      redirect_to @article
+    end
   end
 
 end
