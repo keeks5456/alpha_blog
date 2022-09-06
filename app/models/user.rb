@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   before_save { self.email = email.downcase } # before we save the user we want to lowercase its email
-  has_many :articles 
+  has_many :articles, dependent: :destroy 
 
   validates :username, presence: true, uniqueness: {case_sensetive: false}, length: { minimum: 3, maximum: 25}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i # or use this URI::MailTo::EMAIL_REGEXP

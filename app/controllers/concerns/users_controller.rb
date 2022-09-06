@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :find_user_id, only: [:show, :edit, :update]
+  before_action :find_user_id, only: [:show, :edit, :update, :destroy]
   before_action :require_user, only: [:edit, :update] # the user is only allowed to do these actions to their own profiles 
   before_action :require_same_user, only: [:edit, :update, :destroy] # the same user thats logged in can do these actions to their own profiles
   include SessionsHelper
@@ -38,8 +38,16 @@ class UsersController < ApplicationController
       flash[:notice] = "Account info updated"
       redirect_to @user 
     else
+      render :edit, status: :unprocessable_entity
     end
   end
+
+    def destroy
+      @user.destroy
+      session[:user.id] = nil
+      flash[:notice] = "Account & all articles related, have been deleted"
+      redirect_to articles_path
+    end
 
   private
 
