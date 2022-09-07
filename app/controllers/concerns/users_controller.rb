@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
     def destroy
       @user.destroy
-      session[:user.id] = nil
+      session[:user_id] = nil
       flash[:notice] = "Account & all articles related, have been deleted"
       redirect_to articles_path
     end
