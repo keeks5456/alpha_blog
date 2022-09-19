@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  # ***remember code executes top down so please do these before / after actions in order you need them in!
+  # ***remember code executes top down so please do these before actions in order you need them in!
   before_action :find_params_id, only: [:show, :edit, :update, :destroy]
   before_action :require_user, except: [:show, :index] # all the other actions must require a user to be logged in
   before_action :require_same_user, only: [:edit, :update, :destroy] # this allows only the user thats logged in to do these actions
@@ -21,7 +21,6 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    debugger
     @article = Article.create(article_params)
     @article.user = current_user
     if @article.save
