@@ -24,7 +24,6 @@ class CategoriesController < ApplicationController
     @category = Category.create(category_params)
   if @category.save
       flash[:notice] = "Category was created successfully!"
-      # redirect_to@category    //can use either or
       redirect_to category_path(@category)
     else
       # create a flash warning for user to see when invalid input
