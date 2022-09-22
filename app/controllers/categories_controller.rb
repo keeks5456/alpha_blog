@@ -16,10 +16,14 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
+  def edit 
+    find_category_id
+  end
+
   def create
-   @category = Category.create(category_params)
+    @category = Category.create(category_params)
   #  @category.user = current_user
-    if @category.save
+  if @category.save
       flash[:notice] = "Category was created successfully!"
       # redirect_to@category    //can use either or
       redirect_to category_path(@category)
@@ -29,10 +33,24 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def update 
+    find_category_id
+    if @category.update(category_params)
+      flash[:notice] = "category Name Updated Successfully "
+      redirect_to @category
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private 
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def find_category_id
+    @category = Category.find(params[:id])
   end
 
   def require_admin
