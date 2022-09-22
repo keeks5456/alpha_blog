@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :show]
   get '/users/:id/edit', to: "users#edit"
   get '/users/:id', to: "users#show"
-  get 'signup', to: "users#new"
+  get '/signup', to: "users#new"
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

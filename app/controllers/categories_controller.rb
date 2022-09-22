@@ -22,7 +22,6 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.create(category_params)
-  #  @category.user = current_user
   if @category.save
       flash[:notice] = "Category was created successfully!"
       # redirect_to@category    //can use either or
