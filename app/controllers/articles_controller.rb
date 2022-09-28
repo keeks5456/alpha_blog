@@ -9,7 +9,6 @@ class ArticlesController < ApplicationController
   end
   
   def show 
-    
   end
 
   def new
@@ -17,7 +16,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit 
-    
   end
 
   def create
