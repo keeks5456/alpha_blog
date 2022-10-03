@@ -19,5 +19,17 @@ class CreateArticlesTest < ActionDispatch::IntegrationTest
     assert_match "Some title", response.body
   end
 
+  test "get new article form and reject invalid article submission" do 
+    get "/articles/new"
+    assert_response :success
+    assert_no_difference "Article.count" do 
+      post articles_path, params: { article: { title: " ", description: " " } }
+    end
+    assert_match "errors", response.body
+    assert_select "div.alert"
+    assert_select "h4.alert-heading"
+
+  end
+
 
 end
