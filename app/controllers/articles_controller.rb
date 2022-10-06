@@ -15,8 +15,8 @@ class ArticlesController < ApplicationController
     @article = Article.new 
   end
 
-#   def edit 
-#   end
+  def edit 
+  end
 
   def create
     @article = Article.create(article_params)
@@ -30,23 +30,23 @@ class ArticlesController < ApplicationController
   end
 
 
-#   def update 
-#    if @article.update(article_params)
-#     flash[:notice] = "successful update"
-#     redirect_to article_path(@article)
-#    else
-#     render :edit, status: :unprocessable_entity
-#    end
-#   end
+  def update 
+   if @article.update(article_params)
+    flash[:notice] = "successful update"
+    redirect_to article_path(@article)
+   else
+    render :edit, status: :unprocessable_entity
+   end
+  end
 
 
-# def destroy
-#   @article.destroy
+def destroy
+  @article.destroy
 
-#   redirect_to articles_path
-# end
+  redirect_to articles_path
+end
 
-#   private
+  private
   def article_params
     params.require(:article).permit(:title, :description, category_ids: [])
   end

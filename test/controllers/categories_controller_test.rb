@@ -8,7 +8,6 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
 
-
   test "should get index" do
     get categories_url
     assert_response :success
