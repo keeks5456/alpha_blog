@@ -8,18 +8,22 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @articles = @category.articles.paginate(page: params[:page], per_page: 5)
+
   end
 
   def new 
     @category = Category.new
   end
 
+  def edit 
+    find_category_id
+  end
+
   def create
-   @category = Category.create(category_params)
-  #  @category.user = current_user
-    if @category.save
+    @category = Category.create(category_params)
+  if @category.save
       flash[:notice] = "Category was created successfully!"
-      # redirect_to@category    //can use either or
       redirect_to category_path(@category)
     else
       # create a flash warning for user to see when invalid input
@@ -27,10 +31,24 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def update 
+    find_category_id
+    if @category.update(category_params)
+      flash[:notice] = "category Name Updated Successfully "
+      redirect_to @category
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private 
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def find_category_id
+    @category = Category.find(params[:id])
   end
 
   def require_admin

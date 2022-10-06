@@ -9,7 +9,6 @@ class ArticlesController < ApplicationController
   end
   
   def show 
-    
   end
 
   def new
@@ -17,7 +16,6 @@ class ArticlesController < ApplicationController
   end
 
   def edit 
-    
   end
 
   def create
@@ -25,10 +23,8 @@ class ArticlesController < ApplicationController
     @article.user = current_user
     if @article.save
       flash[:notice] = "Article was created successfully!"
-      # redirect_to @article    //can use either or
       redirect_to article_path(@article)
     else
-      # create a flash warning for user to see when invalid input
       render :new, status: :unprocessable_entity
     end
   end
