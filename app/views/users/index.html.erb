@@ -15,13 +15,13 @@
               <h5 class="card-title"><%= link_to gravatar_for(user, size:150), user %></h5>
               <p class="card-text"><%= pluralize(user.articles.count, "article") %></p>
               <div class="container btn-container">
-                <%= link_to "View", user_path(user), class:"btn btn-outline-dark"%>
+                <%= link_to "View", user_path(user), class:"btn btn-outline-primary"%>
                 <% if logged_in? %> 
                   <% if user == current_user %>
-                    <%= link_to "Edit", edit_user_path(user.id), class:"btn btn-outline-dark", data: {  turbo_method: :edit,} %>
+                    <%= link_to "Edit", edit_user_path(user.id), class:"btn btn-outline-secondary", data: {  turbo_method: :edit,} %>
                   <% end %>
                     <% if current_user.admin? %>
-                      <%= link_to "Delete User", user_path(user), class:"btn btn-outline-dark", method: :delete, data: {confirm: "Are you sure?"} %>
+                      <%= link_to "Delete User", user_path(user), class:"btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
                     <% end %>
                 <% end %>
               </div> 
