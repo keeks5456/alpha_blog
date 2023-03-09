@@ -167,3 +167,20 @@ span.navbar-toggler-icon {
 .flickr_pagination .next_page {
   margin-left: 1em;
 }
+
+//articles index
+
+a {
+  color: var(--black);
+  text-decoration: underline;
+}
+
+//categories
+@media (max-width: 766px) {
+
+  .row {
+    display: flex;
+    justify-content: center;
+  }
+}
+       
