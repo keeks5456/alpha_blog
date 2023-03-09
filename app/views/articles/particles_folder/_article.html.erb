@@ -6,7 +6,7 @@
           <div class="card text-center m-5 shadow-lg  mb-5 rounded">
             <div class="card-header font-italic">
             <% if article.user %>
-            by <%= link_to article.user.username, article.user%>
+            <p class="written-by"> written by <%= link_to article.user.username, article.user%></p>
             <% end %>
 
             <% if article.categories.any? %>
@@ -22,10 +22,10 @@
               <h5 class="card-title"><%= link_to article.title, article_path(article), class:"text-success" %></h5>
               <p class="card-text"><%= truncate(article.description, length:50) %></p>
               <div class="container btn-container">
-                <%= link_to "View", article_path(article), class:"btn btn-outline-dark"%>
+                <%= link_to "View", article_path(article), class:"btn btn-outline-primary"%>
                 <% if logged_in? && (article.user == current_user || current_user.admin?) %>
-                  <%= link_to "Edit", edit_article_path(article.id), class:"btn btn-outline-dark", data: {  turbo_method: :edit,} %>
-                  <%= link_to "Destroy", article_path(article.id), class:"btn btn-outline-dark", data: {
+                  <%= link_to "Edit", edit_article_path(article.id), class:"btn btn-outline-secondary", data: {  turbo_method: :edit,} %>
+                  <%= link_to "Destroy", article_path(article.id), class:"btn btn-outline-danger", data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %>

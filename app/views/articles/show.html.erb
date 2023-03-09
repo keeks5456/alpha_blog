@@ -4,7 +4,8 @@
     <div class="col-8 mt-4">
       <div class="card text-center shadow mb-5 bg-white rounded">
         <div class="card-header font-italic">
-          by <%= @article.user.username if @article.user %>
+          
+         <p class="written-by"> written by <%= @article.user.username if @article.user %></p>
           <%= link_to gravatar_for(@article.user), user_path(@article.user) %>
           <% if @article.categories.any? %>
             <div class="margin-2">
@@ -17,8 +18,8 @@
         <div class="card-body">
         <div class="card-text text-left"><%= simple_format(@article.description) %></div>
         <% if logged_in? && (@article.user == current_user || current_user.admin?)%>          
-          <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-dark" %>
-          <%= link_to "Delete", article_path(@article), class: "btn btn-outline-dark", method: :delete, data: {confirm: "Are you sure?"} %>
+          <%= link_to "Edit", edit_article_path(@article), class: "btn btn-outline-secondary" %>
+          <%= link_to "Delete", article_path(@article), class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
         </div>
           <% end %>
         <div class="card-footer text-muted">
